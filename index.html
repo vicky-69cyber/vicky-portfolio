@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- BASIC SEO -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Freelance web developer helping businesses build fast, modern, responsive websites that convert visitors into customers." />
+    <meta name="keywords" content="freelance web developer, website developer, landing page, business website" />
+    <meta name="author" content="Vicky - Freelance Web Developer" />
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="Freelance Web Developer | Modern Websites That Convert" />
+    <meta property="og:description"
+        content="I build fast, responsive, and conversion-focused websites for businesses and personal brands." />
+    <meta property="og:type" content="website" />
+
+    <title>Vicky | Freelance Web Developer</title>
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container nav">
+            <div class="brand">Vicky</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#why">Why Me</a></li>
+                    <li><a href="#contact" class="nav-cta">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container hero-grid">
+
+                <div class="hero-text">
+                    <h1>
+                        I build <span>modern websites</span><br />
+                        that help businesses grow
+                    </h1>
+
+                    <p>
+                        Freelance web developer crafting fast, responsive and
+                        conversion-focused websites for startups, small businesses and
+                        personal brands.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn-primary">Start Your Project</a>
+                        <a href="#work" class="btn-secondary">View Work</a>
+                    </div>
+
+                    <p class="trust">⚡ Average response time: under 2 hours</p>
+                    <p class="trust">
+                        Frontend Developer • HTML • CSS • JavaScript
+                    </p>
+
+                </div>
+
+                <div class="hero-image">
+                    <img src="assets/Profile.jpeg" alt="Vicky - Web Developer" />
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="services" class="section light">
+            <div class="container">
+                <h2>Services</h2>
+                <p class="section-desc">
+                    Solutions designed to bring you clients, not just a website
+                </p>
+
+                <div class="grid">
+                    <article class="card">
+                        <h3>Landing Pages</h3>
+                        <p>High-converting landing pages designed to turn visitors into leads.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Business Websites</h3>
+                        <p>Professional websites that build trust and drive inquiries.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Portfolio Websites</h3>
+                        <p>Clean, elegant portfolios that attract opportunities.</p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Redesign & Fixes</h3>
+                        <p>Upgrade outdated sites, fix bugs, and improve performance.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORK -->
+        <section id="work" class="section">
+            <div class="container">
+                <h2>Selected Work</h2>
+                <p class="section-desc">
+                    Sample projects demonstrating real-world solutions
+                </p>
+
+                <div class="grid">
+                    <article class="work-card">
+                        <h3>Website Redesign Project</h3>
+                        <p>Redesigned an outdated website to improve UI, speed, and mobile experience.</p>
+                    </article>
+
+                    <article class="work-card">
+                        <h3>Creative Portfolio</h3>
+                        <p>Minimal design with strong personal branding.</p>
+                    </article>
+
+                    <article class="work-card">
+                        <h3>Business Website</h3>
+                        <p>Service-focused layout with clear CTAs.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY -->
+        <section id="why" class="section light">
+            <div class="container">
+                <h2>Why Choose Me</h2>
+                <p class="section-desc">
+                    What you can expect when working with me
+                </p>
+
+                <div class="grid">
+                    <div class="card">
+                        <h3>Fast Delivery</h3>
+                        <p>Most projects completed in 7–14 days.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Mobile-First</h3>
+                        <p>Fully responsive on all devices.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Clear Communication</h3>
+                        <p>No jargon. Regular updates.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Fair Pricing</h3>
+                        <p>Professional results without agency pricing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section contact">
+            <div class="container">
+                <h2>Let’s Build Your Website</h2>
+                <p class="section-desc">Send me a message and I’ll reply fast</p>
+
+                <form id="contactForm" class="contact-form">
+                    <input type="text" id="name" placeholder="Your Name" required />
+                    <input type="email" id="email" placeholder="Your Email" required />
+                    <textarea id="message" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+
+                <p id="formStatus"></p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>© <span id="year"></span> Vicky — Freelance Web Developer</p>
+    </footer>
+
+    <!-- IMPORTANT: module for Firebase -->
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
