@@ -1,60 +1,126 @@
+/* ===============================
+   FIREBASE SETUP (ES MODULE)
+================================ */
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+/* 🔥 REPLACE WITH YOUR REAL CONFIG */
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "XXXX",
+    appId: "XXXX"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* ===============================
+   MAIN SCRIPT
+================================ */
+
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* ===== Mobile menu ===== */
+    /* ===== Mobile Menu ===== */
     const headerNav = document.querySelector(".header .nav");
     const navLinks = document.querySelector(".nav-links");
 
-    const navToggle = document.createElement("button");
-    navToggle.className = "mobile-toggle";
-    navToggle.innerHTML = "☰";
-    headerNav.appendChild(navToggle);
+    if (headerNav && navLinks) {
+        const navToggle = document.createElement("button");
+        navToggle.className = "mobile-toggle";
+        navToggle.innerHTML = "☰";
+        headerNav.appendChild(navToggle);
 
-    navToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("show");
-        navToggle.innerHTML =
-            navLinks.classList.contains("show") ? "✕" : "☰";
-    });
-
-    document.querySelectorAll(".nav-links a").forEach(link => {
-        link.addEventListener("click", () => {
-            navLinks.classList.remove("show");
-            navToggle.innerHTML = "☰";
+        navToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+            navToggle.innerHTML =
+                navLinks.classList.contains("show") ? "✕" : "☰";
         });
-    });
 
-    /* ===== Header shadow on scroll ===== */
+        document.querySelectorAll(".nav-links a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("show");
+                navToggle.innerHTML = "☰";
+            });
+        });
+    }
+
+    /* ===== Header Shadow on Scroll ===== */
     const header = document.querySelector(".header");
-    window.addEventListener("scroll", () => {
-        header.classList.toggle("scrolled", window.scrollY > 10);
-    });
-
-    /* ===== Scroll reveal ===== */
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("reveal");
-                observer.unobserve(entry.target);
-            }
+    if (header) {
+        window.addEventListener("scroll", () => {
+            header.classList.toggle("scrolled", window.scrollY > 10);
         });
-    }, { threshold: 0.15 });
+    }
+
+    /* ===== Scroll Reveal ===== */
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("reveal");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.15 }
+    );
 
     document
-        .querySelectorAll(".card, .work-card, .contact-btn")
+        .querySelectorAll(".card, .work-card")
         .forEach(el => observer.observe(el));
 
-    /* ===== Dynamic year ===== */
+    /* ===== Dynamic Year ===== */
     const year = document.getElementById("year");
     if (year) {
         year.textContent = new Date().getFullYear();
     }
 
-    /* ===== Contact form UX (works with Firebase) ===== */
+    /* ===============================
+       CONTACT FORM → FIREBASE
+    ================================ */
+
     const form = document.getElementById("contactForm");
     const statusText = document.getElementById("formStatus");
 
-    if (form) {
-        form.addEventListener("submit", () => {
+    if (form && statusText) {
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            if (!name || !email || !message) {
+                statusText.textContent = "❌ Please fill all fields";
+                return;
+            }
+
             statusText.textContent = "⏳ Sending message...";
+
+            try {
+                await addDoc(collection(db, "messages"), {
+                    name,
+                    email,
+                    message,
+                    createdAt: serverTimestamp()
+                });
+
+                statusText.textContent = "✅ Message sent successfully!";
+                form.reset();
+
+            } catch (error) {
+                console.error("Firebase Error:", error);
+                statusText.textContent = "❌ Failed to send message. Try again.";
+            }
         });
     }
 
