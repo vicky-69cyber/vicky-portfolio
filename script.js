@@ -1,5 +1,5 @@
 /* ===============================
-   FIREBASE SETUP (ES MODULE)
+   FIREBASE SETUP (ES MODULE CDN)
 ================================ */
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -10,17 +10,17 @@ import {
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-/* 🔥 REPLACE WITH YOUR REAL CONFIG */
+/* 🔥 REAL FIREBASE CONFIG */
 const firebaseConfig = {
-    apiKey: "AIzaSyBxxxxx",
+    apiKey: "AIzaSyDwjxV-1n0kZmoG_xM83lIq6yqWii0R54s",
     authDomain: "vicky-portfolio-a99d3.firebaseapp.com",
     projectId: "vicky-portfolio-a99d3",
     storageBucket: "vicky-portfolio-a99d3.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:abc123"
+    messagingSenderId: "104806431212",
+    appId: "1:104806431212:web:e131c2b67eaa6d0ac98871"
 };
 
-
+// Initialize Firebase (ONCE)
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ===== Header Shadow on Scroll ===== */
+    /* ===== Header Shadow ===== */
     const header = document.querySelector(".header");
     if (header) {
         window.addEventListener("scroll", () => {
@@ -85,10 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         year.textContent = new Date().getFullYear();
     }
 
-    /* ===============================
-       CONTACT FORM → FIREBASE
-    ================================ */
-
+    /* ===== CONTACT FORM → FIREBASE ===== */
     const form = document.getElementById("contactForm");
     const statusText = document.getElementById("formStatus");
 
@@ -120,9 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             } catch (error) {
                 console.error("Firebase Error:", error);
-                statusText.textContent = "❌ Failed to send message. Try again.";
+                statusText.textContent = "❌ Failed to send message.";
             }
         });
     }
-
 });
